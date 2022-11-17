@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Copyright (C) 2022 Soha Jin <soha@lohu.info>. All Rights Reserved.
+
+obj-m := driver/gmac/dwmac-phytium.o
+obj-m += driver/mailbox/phytium-mailbox.o
+obj-m += driver/i2c/phytium-i2c-stub.o

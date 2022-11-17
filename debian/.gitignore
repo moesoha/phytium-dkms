@@ -1,0 +1,7 @@
+.debhelper
+*.debhelper
+debhelper*
+phytium-dkms
+files
+*.log
+*.substvars
