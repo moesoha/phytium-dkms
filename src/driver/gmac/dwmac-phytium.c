@@ -57,7 +57,7 @@ dwmac_phytium_parse_config_acpi(struct platform_device *pdev, const char *mac)
 	np = dev_fwnode(dev);
 
 	plat->phy_interface = fwnode_get_phy_mode(np);
-	plat->interface = plat->phy_interface;
+	plat->mac_interface = plat->phy_interface;
 
 	/* Get max speed of operation from properties */
 	if (fwnode_property_read_u32(np, "max-speed", &plat->max_speed))
@@ -82,9 +82,8 @@ dwmac_phytium_parse_config_acpi(struct platform_device *pdev, const char *mac)
 
 	plat->force_sf_dma_mode =
 		fwnode_property_read_bool(np, "snps,force_sf_dma_mode");
-	plat->en_tx_lpi_clockgating =
-		fwnode_property_read_bool(np, "snps,en-tx-lpi-clockgating");
-
+	if (fwnode_property_read_bool(np,"snps,en-tx-lpi_clockgating"))
+			plat->flags |= STMMAC_FLAG_EN_TX_LPI_CLOCKGATING;
 	/* Set the maxmtu to a default of JUMBO_LEN in case the
 	 * parameter is not present.
 	 */
